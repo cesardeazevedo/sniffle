@@ -1,0 +1,16 @@
+{
+  "name": "sniffle",
+  "version": "0.0.1",
+  "homepage": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "mdi": "~1.2.65"
+  }
+}
