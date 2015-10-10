@@ -1,1 +1,2 @@
-# app
+# sniffle
+django experiment
