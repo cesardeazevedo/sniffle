@@ -1,10 +1,7 @@
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.views.generic.base import TemplateView
-from django.utils.decorators import method_decorator
+from app.models import User
+from django.shortcuts import render
+from django.template import RequestContext
 
-class IndexView(TemplateView):
+def index(request):
     template_name = 'index.html'
-
-    @method_decorator(ensure_csrf_cookie)
-    def dispatch(self, *args, **kwargs):
-        return super(IndexView, self).dispatch(*args, **kwargs)
+    return render(request, template_name)
