@@ -130,6 +130,7 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', True)
 
+TOKEN_SECRET = env('TOKEN_SECRET')
 FACEBOOK_SECRET = env('FACEBOOK_SECRET')
 
 TEMPLATE_DIRS = (
