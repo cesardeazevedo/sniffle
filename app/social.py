@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 from app.models import User
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, Http404
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 
 class social(View):
@@ -52,12 +51,19 @@ class social(View):
             if user:
                 return HttpResponseBadRequest
 
-                user = User(fb_id = profile['id'],
-                            name  = profile['name'],
-                            email = profile['email'])
-                user.save()
-
             payload = parse_token(request)
+
+            user = User.objects.filter(fb_id=payload['sub']).first()
+            if not user:
+                return HttpResponseBadRequest
+
+
+            user = User(fb_id = profile['id'],
+                        name  = profile['name'],
+                        email = profile['email'])
+            user.save()
+            token = self.create_token(user)
+            return HttpResponse(json.dumps({ 'token': token }))
 
         user = User.objects.filter(fb_id=profile['id']).first()
         if user:
