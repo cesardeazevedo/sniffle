@@ -1,1 +1,8 @@
-<h1>Profile</h1>
+<img class='img--thumb' ng-src="{{ profile.currentUser.picture }}" alt="">
+<h2>{{ profile.currentUser.name }}</h2>
+<p>{{ profile.currentUser.email }}</p>
+<hr>
+<a ng-click='profile.logout()' style='cursor:pointer'>
+    <i class="mdi mdi-logout"></i>
+    Logout
+</a>
