@@ -5,6 +5,9 @@ import 'satellizer'
 
 import RouterConfig from './config/router.config'
 import AuthConfig   from './config/auth.config'
+import HttpConfig   from './config/http.config'
+import Interceptor  from './config/interceptor.config'
+import RunnerConfig from './config/runner.config'
 
 // Components
 import '../components/login/login.app'
@@ -21,9 +24,15 @@ let app = angular.module(baseName, [
 
 AuthConfig.$inject   = ['$authProvider']
 RouterConfig.$inject = ['$urlRouterProvider', '$locationProvider']
+HttpConfig.$inject   = ['$httpProvider']
+RunnerConfig.$inject = ['$rootScope', '$state', '$auth']
+Interceptor.$inject  = ['$rootScope', '$q']
 
-app.config(RouterConfig)
-app.config(AuthConfig)
+app.factory('Interceptor', Interceptor.instance)
+   .config(RouterConfig)
+   .config(AuthConfig)
+   .config(HttpConfig)
+   .run(RunnerConfig)
 
 function Bootstrap() {
     angular.element(document).ready(() => {
