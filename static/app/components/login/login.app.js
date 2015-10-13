@@ -6,11 +6,10 @@ export default function LoginRoute($stateProvider){
     .state('login', {
         url: '/',
         templateUrl: 'static/app/components/login/views/login.html',
-        controller: 'LoginController',
+        controller: LoginController,
         controllerAs: 'login'
     })
 }
 
 angular.module('sniffle.login', [])
 .config(LoginRoute)
-.controller('LoginController', LoginController)

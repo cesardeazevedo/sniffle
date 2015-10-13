@@ -1,6 +1,9 @@
 class LoginController {
 
-    constructor($auth){
+    constructor($state, $auth){
+        if($auth.isAuthenticated())
+            $state.transitionTo('profile')
+
         this.auth = $auth
     }
 
@@ -8,10 +11,13 @@ class LoginController {
         this.auth.authenticate('facebook').then((data) => {
             console.log(data)
         }).catch((err) => {
+            if(err.data.destroy)
+                this.auth.logout()
+
             console.log(err)
         })
     }
 }
 
-LoginController.$inject = ['$auth']
+LoginController.$inject = ['$state', '$auth']
 export default LoginController
