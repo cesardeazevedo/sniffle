@@ -5,7 +5,7 @@ class User(models.Model):
     fb_id = models.CharField(max_length=150)
     name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    token = models.CharField(max_length=250)
+    picture = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
